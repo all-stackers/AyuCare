@@ -23,10 +23,10 @@ class User(db.Document):
             user = cls(**args)
             user.save()
             return {"error": False, "data": user}
-
+        
         except (DuplicateKeyError, NotUniqueError):
             return {"error": True, "message": "User with same mobile already exists"}
-
+        
         except Exception as e:
             return {"error": True, "message": str(e)}
 
@@ -35,13 +35,13 @@ class User(db.Document):
         try:
             user = cls.objects.get(mobile_number=mobile_number)
             return {"error": False, "data": user}
-
+        
         except cls.DoesNotExist:
             return {"error": True, "message": "User does not exist"}
-
+        
         except Exception as e:
             return {"error": True, "message": str(e)}
-
+        
     @classmethod
     def add_dosa(cls, mobile_number, vata, pitta, kapha):
         try:
@@ -49,12 +49,12 @@ class User(db.Document):
             user["vata"] = vata
             user["pitta"] = pitta
             user["kapha"] = kapha
-
+            
             user.save()
             return {"error": False, "data": user}
-
+        
         except cls.DoesNotExist:
             return {"error": True, "message": "User does not exist"}
-
+        
         except Exception as e:
             return {"error": True, "message": str(e)}

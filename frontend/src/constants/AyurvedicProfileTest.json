@@ -1,0 +1,81 @@
+{
+  "quizTitle": "Ayurvedic Dosha Quiz",
+  "questions": [
+    {
+      "question": "Body Build:",
+      "options": ["Thin and lean", "Medium build", "Solid and sturdy"]
+    },
+    {
+      "question": "Skin Texture:",
+      "options": [
+        "Dry, rough, or thin skin",
+        "Sensitive, fair, or warm skin",
+        "Oily, smooth, or cool skin"
+      ]
+    },
+    {
+      "question": "Hair Type:",
+      "options": [
+        "Thin, dry, or curly hair",
+        "Fine, straight, or thinning hair",
+        "Thick, wavy, or oily hair"
+      ]
+    },
+    {
+      "question": "Preferred Climate:",
+      "options": [
+        "Love warmth, dislike cold",
+        "Prefer moderate temperatures",
+        "Thrive in cooler weather"
+      ]
+    },
+    {
+      "question": "Appetite:",
+      "options": [
+        "Variable; often forget to eat",
+        "Strong appetite, get irritable if meals are missed",
+        "Steady appetite; can skip meals without issues"
+      ]
+    },
+    {
+      "question": "Digestion:",
+      "options": [
+        "Irregular, prone to bloating, and gas",
+        "Strong, prone to heartburn or acidity",
+        "Slow but steady, can handle heavy foods"
+      ]
+    },
+    {
+      "question": "Sleep Pattern:",
+      "options": [
+        "Light sleeper, often experience insomnia",
+        "Moderate sleeper, occasionally wake up at night",
+        "Deep sleeper, rarely wake up during the night"
+      ]
+    },
+    {
+      "question": "Emotions:",
+      "options": [
+        "Anxious, worry easily, and have racing thoughts",
+        "Quick to anger, driven, and competitive",
+        "Calm, patient, and sometimes complacent"
+      ]
+    },
+    {
+      "question": "Response to Stress:",
+      "options": [
+        "Get anxious, fearful, or overwhelmed",
+        "Become impatient, irritable, or critical",
+        "Stay calm, but can become lethargic or withdrawn"
+      ]
+    },
+    {
+      "question": "Exercise Preference:",
+      "options": [
+        "Prefer gentle, grounding exercises like yoga",
+        "Enjoy moderate, competitive exercises like jogging or swimming",
+        "Thrive in intense, challenging workouts"
+      ]
+    }
+  ]
+}
