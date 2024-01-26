@@ -32,12 +32,12 @@ class Signup(Resource):
             response = UserModel.add_user(args)
             if response["error"]:
                 return response, 500
-
+            
             user = response["data"]
             access_token = create_access_token(identity=user.mobile_number, expires_delta=False)
-
+        
             return {"error": False, "data": json.loads(user.to_json()), "access_token": access_token}
-
+    
 
 class Login(Resource):
 
@@ -59,7 +59,7 @@ class Login(Resource):
             response = UserModel.get_user_by_mobile_number(args["mobile_number"])
             if response["error"]:
                 return response, 404
-
+            
             user = response["data"]
 
             passwordMatch = bcrypt.checkpw(
@@ -68,18 +68,18 @@ class Login(Resource):
 
             if not passwordMatch:
                 return {"error": True, "message": "Invalid credentials"}, 401
-
+            
             access_token = create_access_token(identity=user.mobile_number, expires_delta=False)
-
+            
             return {"error": False, "data": json.loads(user.to_json()), "access_token": access_token}
-
+    
 
 class Secure(Resource):
     @jwt_required()
     def get(self):
         mobile_number = get_jwt_identity()
         return {"error": False, "data": mobile_number}
-
+    
 
 class GetUser(Resource):
     @jwt_required()
@@ -89,17 +89,17 @@ class GetUser(Resource):
         response = UserModel.get_user_by_mobile_number(mobile_number=mobile_number)
         if response["error"]:
             return response, 500
-
+        
         user = response["data"]
 
         return {"error": False, "data": json.loads(user.to_json())}
-
+    
 
 class UpdateUser(Resource):
     @jwt_required()
     def post(self):
         parser = reqparse.RequestParser()
-
+        
         parser.add_argument("vata", type=str, required=True, help="vata is required")
         parser.add_argument("pitta", type=str, required=True, help="pitta is required")
         parser.add_argument("kapha", type=str, required=True, help="kapha is required")
@@ -116,7 +116,8 @@ class UpdateUser(Resource):
         )
         if response["error"]:
             return response, 500
-
+        
         user = response["data"]
 
         return {"error": False, "data": json.loads(user.to_json())}
+    

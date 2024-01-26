@@ -1,0 +1,17 @@
+englisttohindi==4.1.0
+Flask==2.2.3
+Flask_Cors==4.0.0
+Flask_JWT_Extended==4.5.2
+flask_mongoengine==1.0.0
+Flask_RESTful==0.3.10
+langchain==0.0.292
+llama_index==0.8.28
+mongoengine==0.27.0
+openai==0.28.0
+pymongo==4.5.0
+python_bcrypt==0.3.2
+twilio==8.8.0
+python-dotenv==1.0.0
+werkzeug==2.2.3
+gunicorn>=20.0
+sentence-transformers==2.2.2
