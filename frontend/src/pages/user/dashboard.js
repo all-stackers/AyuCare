@@ -120,18 +120,18 @@ const home = () => {
   };
 
   const fetchData = async (dataTypeName) => {
-    try {
-      const response = await fetch(
-        `https://v1.nocodeapi.com/jhenil/fit/McFzXFYoIpKrgpxL/aggregatesDatasets?dataTypeName=${dataTypeName}`
-      );
-      const result = await response.json();
+    // try {
+    //   const response = await fetch(
+    //     `https://v1.nocodeapi.com/jhenilparihar/fit/AIyMVUBTUSNFKymT/aggregatesDatasets?dataTypeName=${dataTypeName}`
+    //   );
+    //   const result = await response.json();
 
-      // Process the response to format the data for the chart
-      const formattedData = formatDataForChart(result[dataTypeName]);
-      setWatchData(formattedData);
-    } catch (error) {
-      console.error("Error fetching data:", error);
-    }
+    //   // Process the response to format the data for the chart
+    //   const formattedData = formatDataForChart(result[dataTypeName]);
+    //   setWatchData(formattedData);
+    // } catch (error) {
+    //   console.error("Error fetching data:", error);
+    // }
   };
 
   const fetchDoshas = async() => {
