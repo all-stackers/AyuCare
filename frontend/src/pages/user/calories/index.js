@@ -1,5 +1,5 @@
 import { toInteger, toNumber } from 'lodash';
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import { ScaleLoader } from 'react-spinners';
 const axios = require('axios');
 
@@ -52,6 +52,7 @@ const handleUpload = () => {
     console.warn('No image selected');
   }
 };
+
 
 
 
@@ -121,6 +122,15 @@ const handleUpload = () => {
     setItemList(itemList.filter((item, i) => i !== index));
   };
   console.log(itemList)
+
+  useEffect(() => {
+    var storedCalories = typeof window !== 'undefined' ? localStorage.getItem('dailyCalories') : null;
+
+    // const storedCalories = localStorage.getItem('dailyCalories');
+    storedCalories=parseInt(storedCalories)+parseInt(totalCalories);
+    localStorage.setItem('dailyCalories',storedCalories);
+
+  }, [totalCalories]);
 
   return (
     <div className="flex items-center justify-center h-screen">
