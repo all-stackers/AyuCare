@@ -10,6 +10,9 @@ from resources.remedies import AyurvedicRemedies
 from resources.AyurvedicDoshas import AyurvedicDoshas
 from resources.ImageToItems import ImageToItems
 from resources.Calories import Calories
+from resources.Documents import Documents
+from resources.Doctor import Doctor
+from resources.Share import Share
 from mongo_engine import db
 from flask_jwt_extended import JWTManager
 from flask_cors import CORS
@@ -48,6 +51,12 @@ api.add_resource(AyurvedicDoshas, "/doshaTreatment")
 api.add_resource(ImageToItems, '/imageToItems')
 
 api.add_resource(Calories, '/calculateCalories')
+
+api.add_resource(Documents, '/documents')
+
+api.add_resource(Doctor, '/doctor')
+
+api.add_resource(Share, '/share')
 
 @app.route('/translate', methods=['POST'])
 def translate_text():

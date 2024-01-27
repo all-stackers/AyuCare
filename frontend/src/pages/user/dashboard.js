@@ -78,8 +78,9 @@ const appointments = [
 const home = () => {
 
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [randomText, setRandomText] = useState('');
   const [aiResponse, setAiResponse] = useState("")
+  const [Calory, setCalory] = useState(0)
+  
 
  
   const [watchData, setWatchData] = useState(null);
@@ -95,6 +96,9 @@ const home = () => {
     pitta: "0",
     kapha: "0"
   })
+  
+
+  
 
   const settings = {
     dots: true,
@@ -116,6 +120,8 @@ const home = () => {
     // setRandomText('');
   };
 
+
+  
 
   const onAskAIhandler = () => {
     // setLoadingAI(true)
@@ -194,6 +200,11 @@ const home = () => {
   const fetchDoshas = async() => {
 
   }
+
+  useEffect(() => {
+    const storedCalories = typeof window !== 'undefined' ? localStorage.getItem('dailyCalories') : null;
+    setCalory(storedCalories);
+  });
 
   useEffect(() => {
     if (!appContext.checkingIfLoggedIn && !appContext.isUserLoggedIn) {
@@ -359,7 +370,7 @@ const home = () => {
               </div>
               <div className="mt-[-70px] mb-[35px] h-[100px] w-[100px] rounded-[50%] bg-white border-[10px] border-[#107177] flex justify-center items-center">
                 <div className="text-center">
-                  <p className="text-[26px] font-light text-[#4e9196]">1280</p>
+                  <p className="text-[26px] font-light text-[#4e9196]">{Calory}</p>
                   <p className="text-[14px] font-light">Calories</p>
                 </div>
               </div>
