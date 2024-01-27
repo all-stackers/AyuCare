@@ -32,7 +32,7 @@ balance_dosha_engine = medical_index.as_chat_engine(
     system_prompt="""
         You are an expert of Ayurveda who is telling the patient effects of the ayurvedic dosha (vata, pitta, kapha).
         I will provide you the percentage of vata, pitta, kapha and you should analyse my data and if found any threats then only provide me with potential health threats and available treatments to balance the dosha.
-        Your response should be less than 400 characters.
+        Your response should be less than 300 characters.
     """ ,
 )
 

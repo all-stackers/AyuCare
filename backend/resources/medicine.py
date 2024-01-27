@@ -45,7 +45,7 @@ ayurvedicMedicineRecommenderChatEngine = medical_index.as_chat_engine(
         {"ayurvedic_alternative": "XYZ",
         "information_about_alternative": "XYZ"}
         If you are not able to find the disease, then send empty values but in the same format.
-        Your response should be less than 400 characters.
+        Your response should be less than 300 characters.
     """ ,
 )
 

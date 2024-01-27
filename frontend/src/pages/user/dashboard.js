@@ -1,10 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import BarGraph from "@/components/barchart";
 import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
 import SemiCircleProgressBar from "react-progressbar-semicircle";
 import { useRouter } from "next/router";
+import { AppContext } from '@/context/appContext'
 
 const calender = [
   {
@@ -59,6 +60,17 @@ const appointments = [
 const home = () => {
   const [watchData, setWatchData] = useState(null);
   const router = useRouter();
+  const appContext = useContext(AppContext)
+  const [userDetails, setUserDetails] = useState({
+    first_name: "All",
+    last_name: "Stackers",
+    age: 21,
+    gender: "male",
+    mobile_number: "9137357003",
+    vata: "0",
+    pitta: "0",
+    kapha: "0"
+  })
 
   const formatDataForChart = (data) => {
     const labels = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
@@ -95,11 +107,25 @@ const home = () => {
     }
   };
 
+  const fetchDoshas = async() => {
+
+  }
+
+  useEffect(() => {
+    if (!appContext.checkingIfLoggedIn && !appContext.isUserLoggedIn) {
+        router.push('/login')
+    }
+    else 
+        setUserDetails(appContext.userDetails)
+}, [appContext])
+
   useEffect(() => {
     fetchData("steps_count");
   }, []);
 
   const currentDateApp = new Date().getDate(); // Get current date
+
+  console.log(userDetails)
 
   return (
     <div className="flex flex-row justify-evenly bg-[#f5f5f5] w-[100%] min-h-[calc(100vh-60px)] box-border overflow-hidden">
@@ -110,9 +136,9 @@ const home = () => {
               <div>Ayurvedic Dosha</div>
               <div className="flex mt-[10px] justify-around">
                 <div className="w-[100px]">
-                  <CircularProgressbar
-                    value={7 * 10}
-                    text={`${7 * 10}%`}
+                  {userDetails && <CircularProgressbar
+                    value={userDetails.vata * 10}
+                    text={`${userDetails.vata * 10}%`}
                     background
                     backgroundPadding={6}
                     styles={buildStyles({
@@ -122,15 +148,15 @@ const home = () => {
                       trailColor: "#d4d4d4",
                       textSize: "16px",
                     })}
-                  />
+                  />}
                   <h1 className="w-full text-center text-[25px] font-bold">
                     Vatta
                   </h1>
                 </div>
                 <div className="w-[100px]">
-                  <CircularProgressbar
-                    value={6.5 * 10}
-                    text={`${6.5 * 10}%`}
+                  {userDetails && <CircularProgressbar
+                    value={userDetails.pitta * 10}
+                    text={`${userDetails.pitta * 10}%`}
                     background
                     backgroundPadding={6}
                     styles={buildStyles({
@@ -140,15 +166,15 @@ const home = () => {
                       trailColor: "#d4d4d4",
                       textSize: "16px",
                     })}
-                  />
+                  />}
                   <h1 className="w-full text-center text-[25px] font-bold">
                     Pitta
                   </h1>
                 </div>
                 <div className="w-[100px]">
-                  <CircularProgressbar
-                    value={8 * 10}
-                    text={`${8 * 10}%`}
+                  {userDetails && <CircularProgressbar
+                    value={userDetails.kapha * 10}
+                    text={`${userDetails.kapha * 10}%`}
                     background
                     backgroundPadding={6}
                     styles={buildStyles({
@@ -158,7 +184,7 @@ const home = () => {
                       trailColor: "#d4d4d4",
                       textSize: "16px",
                     })}
-                  />
+                  />}
                   <h1 className="w-full text-center text-[25px] font-bold">
                     Kapha
                   </h1>

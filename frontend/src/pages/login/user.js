@@ -16,7 +16,7 @@ const login = () => {
   useEffect(() => {
     console.log("inside login page");
     if (appContext.isUserLoggedIn) {
-      router.push("/home");
+      router.push("/user/dashboard");
     }
   }, [appContext]);
 
