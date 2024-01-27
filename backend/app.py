@@ -8,6 +8,8 @@ from resources.predictDisease import PredictDisease
 from resources.medicine import Medicine
 from resources.remedies import AyurvedicRemedies
 from resources.AyurvedicDoshas import AyurvedicDoshas
+from resources.ImageToItems import ImageToItems
+from resources.Calories import Calories
 from mongo_engine import db
 from flask_jwt_extended import JWTManager
 from flask_cors import CORS
@@ -43,6 +45,10 @@ api.add_resource(AyurvedicRemedies, "/getAyurvedicRemedies")
 
 api.add_resource(AyurvedicDoshas, "/doshaTreatment")
 
+api.add_resource(ImageToItems, '/imageToItems')
+
+api.add_resource(Calories, '/calculateCalories')
+
 @app.route('/translate', methods=['POST'])
 def translate_text():
     try:
@@ -60,4 +66,4 @@ def translate_text():
         return jsonify({'error': str(e)}), 400
 
 if __name__ == "__main__":
-    app.run()
+    app.run(debug=True)
