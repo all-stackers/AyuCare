@@ -29,7 +29,7 @@ predictDiseaseChatEngine = medical_index.as_chat_engine(
     chat_mode="context",
     memory=memory,
     system_prompt="""I will tell you the symptoms I am having. You should analyse them and tell me what disease I may be having and The ayurvedic treatment for that disease. 
-    Your response should be less than 400 characters.
+    Your response should be less than 300 characters.
     Format the symptoms as follows. Output should be strictly in json format and should strictly contain nothing extra before and after that:
     {"DiseaseName": "XYZ",
     "Treatment": [

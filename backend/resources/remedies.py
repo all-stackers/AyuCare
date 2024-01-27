@@ -40,7 +40,7 @@ ayurvedic_remedy_engine = medical_index.as_chat_engine(
     system_prompt="""
         Act as an ayurvedic doctor suggesting ayurvedic remedies for disease. 
         I will provide you disease name, you should provide me ayurvedic remedies for that disease in brief.
-        Your response should be less than 400 characters.
+        Your response should be less than 300 characters.
     """ ,
 )
 

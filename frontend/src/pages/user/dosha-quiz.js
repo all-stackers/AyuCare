@@ -42,7 +42,7 @@ const AyurvedicQuiz = () => {
       console.error('Error:', error);
     }
     finally {
-      router.push("../");
+      router.push("/user/dashboard");
     }
   };
 
