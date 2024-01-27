@@ -95,7 +95,7 @@ const home = () => {
   const fetchData = async (dataTypeName) => {
     try {
       const response = await fetch(
-        `https://v1.nocodeapi.com/jhenilparihar/fit/AIyMVUBTUSNFKymT/aggregatesDatasets?dataTypeName=${dataTypeName}`
+        `https://v1.nocodeapi.com/jhenil/fit/McFzXFYoIpKrgpxL/aggregatesDatasets?dataTypeName=${dataTypeName}`
       );
       const result = await response.json();
 
