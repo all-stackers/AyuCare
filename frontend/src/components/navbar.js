@@ -104,7 +104,7 @@ const Navbar = () => {
                 <div
                   className={`hover:text-purple-dark`}
                   onClick={() => {
-                    router.push("/user/expert");
+                    router.push("/appointment/expert");
                   }}
                 >
                   Talk to Expert
