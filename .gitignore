@@ -5,3 +5,4 @@ backend/.env
 backend/__pycache__
 backend/resources/__pycache__
 backend/models/__pycache__
+backend/.env
