@@ -9,6 +9,7 @@ import { AppContext } from '@/context/appContext'
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import Modal from "@/components/model";
 
 const healthTipsData = [
   { tip: "Drink plenty of water every day.", image: "/assets/water.png" },
@@ -75,6 +76,12 @@ const appointments = [
 ];
 
 const home = () => {
+
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [randomText, setRandomText] = useState('');
+  const [aiResponse, setAiResponse] = useState("")
+
+ 
   const [watchData, setWatchData] = useState(null);
   const router = useRouter();
   const appContext = useContext(AppContext)
@@ -98,6 +105,51 @@ const home = () => {
     autoplay: true, // Enable autoplay
     autoplaySpeed: 2000,
   };
+
+  const openModal = () => {
+    console.log("reached");
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+    // setRandomText('');
+  };
+
+
+  const onAskAIhandler = () => {
+    // setLoadingAI(true)
+   
+    
+    const token = localStorage.getItem('access_token')
+
+    var myHeaders = new Headers();
+    myHeaders.append("Authorization", `Bearer ${token}`);
+
+    var raw = "";
+
+    var requestOptions = {
+    method: 'POST',
+    headers: myHeaders,
+    body: raw,
+    redirect: 'follow'
+    };
+
+    fetch("http://localhost:5000/doshaTreatment", requestOptions)
+    .then(response => response.json())
+    .then(result => {
+        console.log(result.data)
+        setAiResponse(result.data)
+        openModal();
+        
+    })
+    .catch(error => console.log('error', error))
+    .finally(() => {
+      // setLoadingAI(false)
+      console.log("done");
+    })
+}
+
 
   const formatDataForChart = (data) => {
     const labels = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
@@ -132,6 +184,11 @@ const home = () => {
     // } catch (error) {
     //   console.error("Error fetching data:", error);
     // }
+  };
+  const handleBlurBackgroundClick = (e) => {
+    if (modalRef.current && !modalRef.current.contains(e.target)) {
+      closeModal();
+    }
   };
 
   const fetchDoshas = async() => {
@@ -233,7 +290,9 @@ const home = () => {
                 >
                   Retake Quiz
                 </button>
-                <button className="bg-gradient-to-r from-blue-300 to-blue-400 w-[150px] py-[5px] rounded-full">
+                <button className="bg-gradient-to-r from-blue-300 to-blue-400 w-[150px] py-[5px] rounded-full"
+                onClick={onAskAIhandler}
+                >
                   Ask AI
                 </button>
               </div>
@@ -397,6 +456,12 @@ const home = () => {
           </div>
         </div>
       </div>
+
+      <Modal
+          isOpen={isModalOpen}
+          closeModal={closeModal}
+          aiResponse={aiResponse}
+        />
     </div>
   );
 };
