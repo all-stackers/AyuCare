@@ -21,7 +21,7 @@ llm = ChatOpenAI(model_name="gpt-3.5-turbo")
 service_context = ServiceContext.from_defaults(embed_model=model, llm=llm)
 set_global_service_context(service_context)
 
-storage_context = StorageContext.from_defaults(persist_dir="./AI/balance_dosh_index")
+storage_context = StorageContext.from_defaults(persist_dir="./AI/medical_composition_index")
 medical_index = load_index_from_storage(storage_context)
 
 memory = ChatMemoryBuffer.from_defaults(token_limit=1500)
