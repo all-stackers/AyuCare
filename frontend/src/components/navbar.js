@@ -53,7 +53,7 @@ const Navbar = () => {
       <div
         className="flex flex-row gap-x-[15px] font-medium font-Lexend text-[20px] text-dark1 cursor-pointer"
         onClick={() => {
-          router.push("/home");
+          router.push("/user/dashboard");
         }}
       >
         <img src="/assets/logo.svg" alt="logo" className="w-[16px]" />
@@ -101,7 +101,12 @@ const Navbar = () => {
                 >
                   Ayurvedic Learning
                 </div>
-                <div className={`hover:text-purple-dark`}>
+                <div
+                  className={`hover:text-purple-dark`}
+                  onClick={() => {
+                    router.push("/user/expert");
+                  }}
+                >
                   Talk to Expert
                 </div>
               </div>

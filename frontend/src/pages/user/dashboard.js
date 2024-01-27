@@ -4,6 +4,7 @@ import BarGraph from "@/components/barchart";
 import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
 import SemiCircleProgressBar from "react-progressbar-semicircle";
+import { useRouter } from "next/router";
 
 const calender = [
   {
@@ -57,6 +58,7 @@ const appointments = [
 
 const home = () => {
   const [watchData, setWatchData] = useState(null);
+  const router = useRouter();
 
   const formatDataForChart = (data) => {
     const labels = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
@@ -94,7 +96,7 @@ const home = () => {
   };
 
   useEffect(() => {
-    // fetchData("steps_count");
+    fetchData("steps_count");
   }, []);
 
   const currentDateApp = new Date().getDate(); // Get current date
@@ -170,7 +172,12 @@ const home = () => {
                 body according to Ayurvedic principles.
               </p>
               <div className="flex mt-[20px] justify-around">
-                <button className="bg-gradient-to-r from-blue-300 to-blue-400 w-[150px] py-[5px] rounded-full">
+                <button
+                  className="bg-gradient-to-r from-blue-300 to-blue-400 w-[150px] py-[5px] rounded-full"
+                  onClick={() => {
+                    router.push("/user/dosha-quiz");
+                  }}
+                >
                   Retake Quiz
                 </button>
                 <button className="bg-gradient-to-r from-blue-300 to-blue-400 w-[150px] py-[5px] rounded-full">
@@ -244,7 +251,12 @@ const home = () => {
                   <p className="text-[14px] font-light">Calories</p>
                 </div>
               </div>
-              <button className="bg-white rounded-[20px] px-[10px] py-[5px] text-[15px] text-[#ffb84c]">
+              <button
+                className="bg-white rounded-[20px] px-[10px] py-[5px] text-[15px] text-[#ffb84c]"
+                onClick={() => {
+                  router.push("/user/calories");
+                }}
+              >
                 Add Calories
               </button>
             </div>
