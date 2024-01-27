@@ -125,6 +125,17 @@ const DoctorDashboard = () => {
     },
   ];
 
+  const sizeChart = {
+    0: "min-h-[0px]",
+    10: "min-h-[40px]",
+    12: "min-h-[80px]",
+    14: "min-h-[120px]",
+    16: "min-h-[160px]",
+    18: "min-h-[200px]",
+  };
+
+  const weeklyData = ["12", "14", "12", "18", "16", "14", "16"];
+
   return (
     <div className="flex w-full justify-between">
       <div className="flex-col w-full px-8 py-4">
@@ -148,47 +159,111 @@ const DoctorDashboard = () => {
             <img className="w-[300px]" src="/assets/instrument.png" />
           </div>
         </div>
-        <div className="mt-[20px] w-[400px] p-4 bg-[#fafafc]">
-          <p className="font-bold text-gray-600 mb-[20px]">
-            Today's Appointments
-          </p>
-          <div>
-            {appointments.map((appointment, index) => (
-              <div
-                key={index}
-                className="flex border-b-[1px] mt-[5px] py-[5px] pb-[12px] justify-between"
-              >
-                <div className="flex">
-                  <img
-                    className="h-[50px] rounded-[50%] border-[1px]"
-                    src={appointment.image}
-                    alt={appointment.name}
-                  />
-                  <div className="m-[5px] ml-[10px]">
-                    <p className="text-[15px] font-semibold text-gray-700">
-                      {appointment.name}
-                    </p>
-                    <p className="uppercase text-[12px] font-light text-gray-500">
-                      {appointment.reason}
-                    </p>
+        <div className="flex w-full py-[20px] gap-x-4">
+          <div className="w-[400px] p-4 bg-[#fafafc]">
+            <p className="font-bold text-gray-600 mb-[20px]">
+              Today's Appointments
+            </p>
+            <div>
+              {appointments.map((appointment, index) => (
+                <div
+                  key={index}
+                  className="flex border-b-[1px] mt-[5px] py-[5px] pb-[12px] justify-between"
+                >
+                  <div className="flex">
+                    <img
+                      className="h-[50px] rounded-[50%] border-[1px]"
+                      src={appointment.image}
+                      alt={appointment.name}
+                    />
+                    <div className="m-[5px] ml-[10px]">
+                      <p className="text-[15px] font-semibold text-gray-700">
+                        {appointment.name}
+                      </p>
+                      <p className="uppercase text-[12px] font-light text-gray-500">
+                        {appointment.reason}
+                      </p>
+                    </div>
+                  </div>
+                  <div className="my-auto flex">
+                    {appointment.status ? (
+                      <img
+                        className="my-auto mr-2 h-[20px]"
+                        src="/assets/check.png"
+                      ></img>
+                    ) : (
+                      <img
+                        className="my-auto mr-2 h-[20px]"
+                        src="/assets/remove.png"
+                      ></img>
+                    )}
+                    <p className="text-2xl">{appointment.time}</p>
                   </div>
                 </div>
-                <div className="my-auto flex">
-                  {appointment.status ? (
-                    <img
-                      className="my-auto mr-2 h-[20px]"
-                      src="/assets/check.png"
-                    ></img>
-                  ) : (
-                    <img
-                      className="my-auto mr-2 h-[20px]"
-                      src="/assets/remove.png"
-                    ></img>
-                  )}
-                  <p className="text-2xl">{appointment.time}</p>
+              ))}
+            </div>
+          </div>
+          <div className="flex flex-col bg-[#fafafc] px-[20px] py-[25px] box-border h-[350px] font-medium font-Lexend text-[18px] text-dark1">
+            <div>Patient Analytics</div>
+            <div className="flex flex-row mt-[30px] font-normal">
+              <div className="flex flex-col-reverse gap-y-[10px] border-[1px]">
+                <div className="h-[30px] w-[50px] flex justify-center items-center">
+                  0
+                </div>
+                <div className="h-[30px] w-[50px] flex justify-center items-center">
+                  10
+                </div>
+                <div className="h-[30px] w-[50px] flex justify-center items-center">
+                  12
+                </div>
+                <div className="h-[30px] w-[50px] flex justify-center items-center">
+                  14
+                </div>
+                <div className="h-[30px] w-[50px] flex justify-center items-center">
+                  16
+                </div>
+                <div className="h-[30px] w-[50px] flex justify-center items-center">
+                  18
                 </div>
               </div>
-            ))}
+              <div className="flex flex-col ml-[10px]">
+                <div className="flex flex-row justify-evenly gap-x-[10px] h-full">
+                  {weeklyData.map((data, index) => {
+                    const height = sizeChart[data];
+                    return (
+                      <div className="flex flex-col w-[45px]" key={index}>
+                        <div
+                          className={`w-full bg-gradient-to-b from-blue-400 via-blue-300 to-blue-200 mt-auto ${height}`}
+                        ></div>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+            </div>
+            <div className="flex flex-row gap-x-[10px] ml-[62px] text-[15px] mt-[5px]">
+              <div className="flex justify-center items-center min-w-[45px]">
+                Mon
+              </div>
+              <div className="flex justify-center items-center min-w-[45px]">
+                Tue
+              </div>
+              <div className="flex justify-center items-center min-w-[45px]">
+                Wed
+              </div>
+              <div className="flex justify-center items-center min-w-[45px]">
+                Thur
+              </div>
+              <div className="flex justify-center items-center min-w-[45px]">
+                Fri
+              </div>
+              <div className="flex justify-center items-center min-w-[45px]">
+                Sat
+              </div>
+              <div className="flex justify-center items-center min-w-[45px]">
+                Sun
+              </div>
+            </div>
           </div>
         </div>
       </div>

@@ -82,7 +82,7 @@ const Navbar = () => {
             <>
               <div className="flex flex-row items-center gap-x-[30px] mr-[30px] cursor-pointer">
                 <div
-                  className={`hover:text-purple-dark hover:font-medium ${
+                  className={`hover:text-purple-dark ${
                     pathname == "/aiSolutions" && "text-purple-dark"
                   }`}
                   onClick={() => {
@@ -92,7 +92,7 @@ const Navbar = () => {
                   AI Solutions
                 </div>
                 <div
-                  className={`hover:text-purple-dark hover:font-medium ${
+                  className={`hover:text-purple-dark ${
                     pathname == "/ayurlearn/modules" && "text-purple-dark"
                   }`}
                   onClick={() => {
@@ -101,7 +101,7 @@ const Navbar = () => {
                 >
                   Ayurvedic Learning
                 </div>
-                <div className={`hover:text-purple-dark hover:font-medium`}>
+                <div className={`hover:text-purple-dark`}>
                   Talk to Expert
                 </div>
               </div>

@@ -1,7 +1,173 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+ 
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
 
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Lexend:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap");
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+ 
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+ 
+    --primary: 222.2 47.4% 11.2%;
+    --primary-foreground: 210 40% 98%;
+ 
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+ 
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+ 
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+ 
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
 
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap");
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 222.2 84% 4.9%;
+ 
+    --radius: 0.5rem;
+  }
+ 
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+ 
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+ 
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+ 
+    --primary: 210 40% 98%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+ 
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+ 
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+ 
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+ 
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+ 
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 212.7 26.8% 83.9%;
+  }
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap");
+
+.thin-text {
+  font-weight: 400;
+}
+
+.learning_navbar .nav_links {
+  font-size: 16px;
+  font-weight: 600;
+  color: #222;
+  font-family: "Poppins", sans-serif;
+}
+.learning_navbar .nav_links_active {
+  color: #1669c9;
+}
+.nav_links:hover {
+  color: #1669c9;
+  cursor: pointer;
+}
+.modules .container {
+  width: 100%;
+  padding: 0 50px;
+}
+
+.learn_heading {
+  font-size: 4rem;
+  font-weight: 700;
+  line-height: 4.5rem;
+  margin-bottom: 24px;
+  font-family: "Poppins", sans-serif;
+}
+
+.prompt_card {
+  @apply flex-1 break-inside-avoid rounded-lg bg-white/20 bg-clip-padding px-4 py-2 pb-4 backdrop-blur-lg backdrop-filter w-full h-fit;
+}
+.feed {
+  @apply mx-auto w-full max-w-xl flex justify-center items-center flex-col gap-2;
+}
+
+.prompt_layout {
+  @apply grid grid-cols-3 gap-x-20;
+}
+/* 
+.outline_btn {
+  @apply rounded-full border border-black bg-transparent py-1.5 px-5 text-black transition-all hover:bg-black hover:text-white text-center text-sm font-inter flex items-center justify-center;
+} */
+/* Flex 1 styling  */
+
+.flex-1 {
+  flex: 1;
+}
+
+.title {
+  width: 65%;
+  margin: 15%;
+}
+.primary-title {
+  font-size: 32px;
+  font-weight: 500;
+  margin-bottom: 4%;
+  color: #202020;
+}
+.secondary-title {
+  font-size: 18px;
+  color: #606060;
+}
+.sally-img2 {
+  position: absolute;
+  margin-top: -40px;
+}
+.sally-img2 img {
+  /* max-width: 720px; */
+  max-width: 50vw;
+}
+.sally-img1 {
+  position: absolute;
+  justify-content: center;
+  margin: 0 auto;
+  margin-top: 55px;
+  left: 150px;
+}
+.sally-img1 img {
+  /* max-width: 395px; */
+  max-width: 30vw;
+}
+/* YourComponent.css */
+
+.custom-scrollbar-container {
+  scrollbar-width: thin;
+  scrollbar-color: #888 #f0f0f0; /* Adjust colors as needed */
+
+  ::-webkit-scrollbar {
+    width: 6px; /* Set your desired width */
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background-color: #888; /* Set the color of the thumb */
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background-color: #555; /* Set the color of the thumb on hover */
+  }
+}
+
+
+
+}
