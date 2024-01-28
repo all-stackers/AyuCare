@@ -109,6 +109,15 @@ const Navbar = () => {
                 >
                   Talk to Expert
                 </div>
+                <div
+                  className={`hover:text-purple-dark`}
+                  onClick={() => {
+                    router.push("/user/documents");
+                  }}
+                >
+                  Manage Documents
+                </div>
+                
               </div>
 
               <button

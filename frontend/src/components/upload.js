@@ -15,42 +15,65 @@ const UploadModal = ({ isOpen, closeModal }) => {
     }
   };
 
-  const encryptFile = () => {
+  const sendData = async (encryptedFileObject) => {
+    console.log("here")
+    var myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+  
+    var raw = JSON.stringify({
+      documents: [encryptedFileObject],
+    });
+  
+    var requestOptions = {
+      method: "POST",
+      headers: myHeaders,
+      body: raw,
+      redirect: "follow",
+    };
+  
+    try {
+      const response = await fetch("http://localhost:5000/documents", requestOptions);
+      const result = await response.text();
+      console.log(result);
+    } catch (error) {
+      console.log("error", error);
+    }
+  };
+  
+  const encryptFile = async () => {
     if (selectedFile) {
+      setShowLoader(true); // Show loader when starting file encryption and upload
       const reader = new FileReader();
-      reader.onload = (event) => {
+      reader.onload = async (event) => {
         const fileData = event.target.result;
         const encryptedData = CryptoJS.AES.encrypt(
           fileData,
           "IyaLRhwGUhXWdFQH048lfI0cHwsozuYacZweqDXcUaFsQw8Y"
         ).toString();
         console.log("Encrypted Blob:", encryptedData);
-
+  
         const currentDate = new Date().toLocaleDateString();
         const fileSize = (selectedFile.size / (1024 * 1024)).toFixed(2) + " MB";
-
+  
         const encryptedFileObject = {
-          filename: selectedFile.name,
+          name: selectedFile.name,
           encrypted_blob: encryptedData,
           upload_date: currentDate,
           size: fileSize,
         };
         console.log(encryptedFileObject);
-        setFileObject(encryptedFileObject);
-        setShowLoader(false);
+  
+        await sendData(encryptedFileObject);
+        setShowLoader(false); // Hide loader after upload completes
+        closeModal();
       };
       reader.readAsDataURL(selectedFile);
     }
   };
-
+  
   const handleFileChange = (e) => {
     setSelectedFile(e.target.files[0]);
     setFileName(e.target.value.length ? e.target.value : "file seleted");
-  };
-
-  const handleSubmit = () => {
-    setShowLoader(true);
-    encryptFile();
   };
 
   useEffect(() => {
@@ -110,7 +133,7 @@ const UploadModal = ({ isOpen, closeModal }) => {
                 </div>
               ) : (
                 <button
-                  onClick={handleSubmit}
+                  onClick={encryptFile}
                   className="bg-blue-500 text-white px-[40px] py-2 rounded-lg mt-4 hover:bg-blue-600"
                 >
                   Upload

@@ -1,34 +1,25 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import MiniScaleLoader from "react-spinners/ScaleLoader";
 
-const pdfs = [
-  {
-    id: 1,
-    name: "Sample PDF 1",
-    url: "sample_pdf_1.pdf",
-    uploadDate: "2024-01-27",
-    size: "1.5 MB",
-  },
-  {
-    id: 2,
-    name: "Sample PDF 2",
-    url: "sample_pdf_2.pdf",
-    uploadDate: "2024-01-26",
-    size: "2.3 MB",
-  },
-  {
-    id: 3,
-    name: "Sample PDF 3",
-    url: "sample_pdf_3.pdf",
-    uploadDate: "2024-01-25",
-    size: "1.8 MB",
-  },
-];
+
 
 const SelectDocument = () => {
   const [selectedPdfs, setSelectedPdfs] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [pdfs, setPdfs] = useState([]);
+  useEffect(() => {
+    const fetchDocuments = async () => {
+      try {
+        const response = await fetch("http://localhost:5000/documents");
+        const data = await response.json();
+        setPdfs(data.documents);
+      } catch (error) {
+        console.error('Error fetching documents:', error);
+      }
+    };
+    fetchDocuments();
 
+  }, []);
   const handlePdfSelect = (pdfId) => {
     const selected = pdfs.find((pdf) => pdf.id === pdfId);
     setSelectedPdfs((prevSelected) => [...prevSelected, selected]);
@@ -67,6 +58,8 @@ const SelectDocument = () => {
             Select documents you want to share
           </h1>
           <div className="grid grid-cols-1 gap-4">
+            
+            <>
             {pdfs.map((pdf) => (
               <div
                 key={pdf.id}
@@ -102,6 +95,8 @@ const SelectDocument = () => {
                 </div>
               </div>
             ))}
+            </>
+            
           </div>
         </div>
       </div>
