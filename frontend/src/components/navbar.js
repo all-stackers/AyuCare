@@ -102,6 +102,16 @@ const Navbar = () => {
                   Ayurvedic Learning
                 </div>
                 <div
+                  className={`hover:text-purple-dark ${
+                    pathname == "/mentalHealth" && "text-purple-dark"
+                  }`}
+                  onClick={() => {
+                    router.push("/mentalHealth");
+                  }}
+                >
+                  Mental Health
+                </div>
+                <div
                   className={`hover:text-purple-dark`}
                   onClick={() => {
                     router.push("/appointment/expert");

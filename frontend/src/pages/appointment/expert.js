@@ -21,62 +21,72 @@ const MedicalSpecialists = () => {
   ];
 
   const doctors = [
-    { name: "Dr. John Doe", specialization: "MBBS", gender: "Male" },
-    { name: "Dr. Jane Smith", specialization: "Dentist", gender: "Female" },
+    { name: "Dr. John Doe", specialization: "MBBS", gender: "Male", photo: "/assets/d1.png" },
+    { name: "Dr. Jane Smith", specialization: "Dentist", gender: "Female", photo: "/assets/d2.png"},
     {
       name: "Dr. David Johnson",
       specialization: "Dermatologist",
       gender: "Male",
+      photo: "/assets/d3.png"
     },
-    { name: "Dr. Emily White", specialization: "Orthopedic", gender: "Female" },
+    { name: "Dr. Emily White", specialization: "Orthopedic", gender: "Female", photo: "/assets/d4.png"},
     {
       name: "Dr. Michael Brown",
       specialization: "Cardiologist",
       gender: "Male",
+      photo: "/assets/d5.png"
     },
     {
       name: "Dr. Sarah Davis",
       specialization: "Pediatrician",
       gender: "Female",
+      photo: "/assets/d1.png"
     },
     { name: "Dr. Robert Green", specialization: "Oncologist", gender: "Male" },
     {
       name: "Dr. Olivia Miller",
       specialization: "Neurologist",
       gender: "Female",
+      photo: "/assets/d2.png"
     },
     {
       name: "Dr. Andrew Wilson",
       specialization: "Gynecologist",
       gender: "Male",
+      photo: "/assets/d3.png"
     },
     // Additional data
-    { name: "Dr. Linda White", specialization: "Dentist", gender: "Female" },
-    { name: "Dr. Brian Smith", specialization: "Orthopedic", gender: "Male" },
+    { name: "Dr. Linda White", specialization: "Dentist", gender: "Female", photo: "/assets/d4.png" },
+    { name: "Dr. Brian Smith", specialization: "Orthopedic", gender: "Male", photo: "/assets/d5.png"},
     {
       name: "Dr. Jessica Johnson",
       specialization: "Cardiologist",
       gender: "Female",
+      photo: "/assets/d1.png"
     },
     {
       name: "Dr. Christopher Brown",
       specialization: "Pediatrician",
       gender: "Male",
+      photo: "/assets/d2.png"
     },
     {
       name: "Dr. Rachel Green",
       specialization: "Oncologist",
       gender: "Female",
+      photo: "/assets/d4.png"
     },
     {
       name: "Dr. Daniel Miller",
       specialization: "Neurologist",
       gender: "Male",
+      photo: "/assets/d5.png"
     },
     {
       name: "Dr. Sophia Wilson",
       specialization: "Gynecologist",
       gender: "Female",
+      photo: "/assets/d1.png"
     },
     // Add more doctors as needed
   ];
@@ -125,7 +135,7 @@ const MedicalSpecialists = () => {
                 key={index}
                 className="max-w-xs w-[232px] rounded-lg overflow-hidden  px-4 py-8 bg-[#f2f4f9] flex flex-col items-center"
               >
-                {doctor.gender.toLowerCase() == "female" ? (
+                {/* {doctor.gender.toLowerCase() == "female" ? (
                   <>
                     <img
                       src="/assets/doctor_female.png"
@@ -133,13 +143,13 @@ const MedicalSpecialists = () => {
                     />
                   </>
                 ) : (
-                  <>
+                  <> */}
                     <img
-                      src="/assets/doctor_male.png"
+                      src={doctor.photo}
                       className="w-[100%] h-[100%] object-cover mb-4"
                     />
-                  </>
-                )}
+                  {/* </>
+                )} */}
 
                 <div className="py-[15px] bg-[#efd2f7] w-[100%] flex flex-col items-center rounded-[10px]">
                   <div className="text-md font-semibold mb-2 text-[#280a30]">

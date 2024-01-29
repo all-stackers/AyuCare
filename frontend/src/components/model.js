@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
+import { ScaleLoader } from 'react-spinners';
 
 const Modal = ({ isOpen, closeModal, aiResponse }) => {
 
@@ -33,6 +34,10 @@ const Modal = ({ isOpen, closeModal, aiResponse }) => {
             <p className="text-lg text-gray-800">
               {aiResponse}
             </p>
+            {aiResponse.length==0 && <div className="flex flex-col gap-y-[10px] mt-[20px] items-center">
+                  <ScaleLoader color="#7C3AED" />
+                  Getting Response...
+                </div>}
             <span
               className="close-button text-2xl cursor-pointer absolute top-2 right-2"
               onClick={closeModal}

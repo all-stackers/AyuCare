@@ -48,7 +48,7 @@ const UploadModal = ({ isOpen, closeModal }) => {
         const fileData = event.target.result;
         const encryptedData = CryptoJS.AES.encrypt(
           fileData,
-          "IyaLRhwGUhXWdFQH048lfI0cHwsozuYacZweqDXcUaFsQw8Y"
+          "IyaLRhwGUh"
         ).toString();
         console.log("Encrypted Blob:", encryptedData);
   

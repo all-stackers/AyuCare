@@ -1,3 +1,4 @@
+import { forEach } from "lodash";
 import React, { useState, useEffect } from "react";
 import MiniScaleLoader from "react-spinners/ScaleLoader";
 
@@ -27,7 +28,32 @@ const SelectDocument = () => {
 
   const handleClick = () => {
     setLoading(true);
+    let sharePdfs = [];
+    forEach(selectedPdfs, async (pdf) => {
+      sharePdfs.push(pdf.id)
+    });
+    console.log(sharePdfs);
+    var myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+
+    var raw = JSON.stringify({
+      "documents": sharePdfs
+    });
+
+    var requestOptions = {
+      method: 'POST',
+      headers: myHeaders,
+      body: raw,
+      redirect: 'follow'
+    };
+
+    fetch("http://localhost:5000/share", requestOptions)
+      .then(response => response.text())
+      .then(result => { console.log(result); setLoading(false); })
+      .catch(error => console.log('error', error));
   };
+
+  console.log(selectedPdfs);
 
   return (
     <div>
@@ -58,45 +84,45 @@ const SelectDocument = () => {
             Select documents you want to share
           </h1>
           <div className="grid grid-cols-1 gap-4">
-            
+
             <>
-            {pdfs.map((pdf) => (
-              <div
-                key={pdf.id}
-                className="bg-white w-[100%] mx-auto shadow-md overflow-hidden"
-              >
-                <div className="flex items-center justify-between px-[20px] py-[10px]">
-                  <div className="flex items-center">
-                    <div className="mr-4">
-                      <img
-                        className="h-[40px]"
-                        src="\assets\pdf-file-format.png"
-                        alt="PDF Icon"
-                      ></img>
-                    </div>
-                    <div>
-                      <h2 className="font-bold text-gray-700 text-[16px]">
-                        {pdf.name}
-                      </h2>
-                      <div className="flex gap-x-[15px]">
-                        <p className="text-gray-600 text-[12px]">
-                          Upload Date: {pdf.uploadDate}
-                        </p>
-                        <p className="text-gray-600 text-[12px]">
-                          Size: {pdf.size}
-                        </p>
+              {pdfs.map((pdf) => (
+                <div
+                  key={pdf.id}
+                  className="bg-white w-[100%] mx-auto shadow-md overflow-hidden"
+                >
+                  <div className="flex items-center justify-between px-[20px] py-[10px]">
+                    <div className="flex items-center">
+                      <div className="mr-4">
+                        <img
+                          className="h-[40px]"
+                          src="\assets\pdf-file-format.png"
+                          alt="PDF Icon"
+                        ></img>
+                      </div>
+                      <div>
+                        <h2 className="font-bold text-gray-700 text-[16px]">
+                          {pdf.name}
+                        </h2>
+                        <div className="flex gap-x-[15px]">
+                          <p className="text-gray-600 text-[12px]">
+                            Upload Date: {pdf.uploadDate}
+                          </p>
+                          <p className="text-gray-600 text-[12px]">
+                            Size: {pdf.size}
+                          </p>
+                        </div>
                       </div>
                     </div>
+                    <input
+                      type="checkbox"
+                      onChange={() => handlePdfSelect(pdf.id)}
+                    />
                   </div>
-                  <input
-                    type="checkbox"
-                    onChange={() => handlePdfSelect(pdf.id)}
-                  />
                 </div>
-              </div>
-            ))}
+              ))}
             </>
-            
+
           </div>
         </div>
       </div>

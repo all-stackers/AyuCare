@@ -1,8 +1,18 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
+import DocumentModal from "@/components/document";
 
 const DoctorDashboard = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const openModal = () => {
+    console.log("reached");
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
   function getFormattedDate() {
     const daysOfWeek = [
       "Sunday",
@@ -51,11 +61,11 @@ const DoctorDashboard = () => {
 
   const alerts = [
     {
-      image: "/assets/profile.png",
-      name: "John Doe",
+      image: "/assets/man2.png",
+      name: "Rupesh Raut",
       reason: "Consultation",
-      time: "11:00 am",
-      date: "09 Dec",
+      time: "10:00 am",
+      date: "29 Jan",
     },
     {
       image: "/assets/profile.png",
@@ -147,7 +157,7 @@ const DoctorDashboard = () => {
           <div className="my-auto mr-[50px]">
             <p className="text-4xl font-bold text-blue-500 ">
               Welcome
-              <em className="font-light text-4xl text-blue-500 ml-2">Mary!</em>
+              <em className="font-light text-4xl text-blue-500 ml-2">Emily!</em>
             </p>
             <p className="text-gray-800 mt-[10px]">
               You Have <b>7 new patients</b> remaining today!
@@ -272,9 +282,9 @@ const DoctorDashboard = () => {
         <div className="flex flex-col items-center w-full py-4">
           <img
             className="mb-4 w-[100px] h-[100px] rounded-[50%] border-2"
-            src="/assets/doctor.jpg"
+            src="/assets/d0.png"
           />
-          <p className="font-semibold text-gray-700">Dr. Mary Grey</p>
+          <p className="font-semibold text-gray-700">Dr. Emily White</p>
           <p className="text-gray-400 mt-[5px] font-light text-[12px]">
             Psychiatrist, Therapist
           </p>
@@ -299,11 +309,12 @@ const DoctorDashboard = () => {
             {alerts.map((alert, index) => (
               <div
                 key={index}
+                onClick={openModal}
                 className="flex border-b-[1px] mt-[5px] py-[5px] pb-[12px] justify-between"
               >
                 <div className="flex">
                   <img
-                    className="h-[50px] rounded-[50%] border-[1px]"
+                    className="h-[50px] w-[50px] rounded-[50%] border-[1px]"
                     src={alert.image}
                     alt={alert.name}
                   />
@@ -325,6 +336,8 @@ const DoctorDashboard = () => {
           </div>
         </div>
       </div>
+
+      <DocumentModal isOpen={isModalOpen} closeModal={closeModal} />
     </div>
   );
 };

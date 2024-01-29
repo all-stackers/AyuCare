@@ -126,7 +126,7 @@ const home = () => {
   const onAskAIhandler = () => {
     // setLoadingAI(true)
    
-    
+    openModal();
     const token = localStorage.getItem('access_token')
 
     var myHeaders = new Headers();
@@ -146,7 +146,6 @@ const home = () => {
     .then(result => {
         console.log(result.data)
         setAiResponse(result.data)
-        openModal();
         
     })
     .catch(error => console.log('error', error))
@@ -178,18 +177,18 @@ const home = () => {
   };
 
   const fetchData = async (dataTypeName) => {
-    // try {
-    //   const response = await fetch(
-    //     `https://v1.nocodeapi.com/jhenilparihar/fit/AIyMVUBTUSNFKymT/aggregatesDatasets?dataTypeName=${dataTypeName}`
-    //   );
-    //   const result = await response.json();
+    try {
+      const response = await fetch(
+        `https://v1.nocodeapi.com/jhenil/fit/McFzXFYoIpKrgpxL/aggregatesDatasets?dataTypeName=${dataTypeName}`
+      );
+      const result = await response.json();
 
-    //   // Process the response to format the data for the chart
-    //   const formattedData = formatDataForChart(result[dataTypeName]);
-    //   setWatchData(formattedData);
-    // } catch (error) {
-    //   console.error("Error fetching data:", error);
-    // }
+      // Process the response to format the data for the chart
+      const formattedData = formatDataForChart(result[dataTypeName]);
+      setWatchData(formattedData);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
   };
   const handleBlurBackgroundClick = (e) => {
     if (modalRef.current && !modalRef.current.contains(e.target)) {
@@ -355,7 +354,7 @@ const home = () => {
           </div>
         </div>
         <div className="flex w-full">
-          <div className="flex w-[300px] px-[10px] py-[20px]">
+          <div className="flex w-[300px] h-[350px] px-[10px] py-[20px]">
             <div className="flex flex-col items-center bg-[#05666c] rounded-[20px] px-[20px] py-[25px] box-border w-[100%] font-medium font-Lexend text-[18px] text-dark1">
               <div className="mx-auto text-white mb-[10px]">
                 Calories Counter
@@ -387,12 +386,11 @@ const home = () => {
           <div className="flex px-[10px] py-[20px]">
             <div className="flex flex-col bg-white rounded-[20px] px-[20px] py-[25px] box-border w-[100%] font-medium font-Lexend text-[18px] text-dark1">
               <div className="mb-[10px]">Tips</div>
-              <div className="max-w-[500px] mx-auto">
+              <div className="max-w-[720px] mx-auto">
                 <Slider {...settings}>
                   {healthTipsData.map((data, index) => (
                     <div key={index} className="px-2 py-2">
                       <div className="bg-white rounded-lg shadow-md p-6">
-                        <img className="w-full h-full" src={`${data.image}`} />
                         <p className="text-lg font-semibold">{data.tip}</p>
                       </div>
                     </div>
@@ -411,7 +409,7 @@ const home = () => {
               alt="person"
               className="w-full rounded-[20px] object-cover"
             />
-            <div className="flex bg-white justify-between rounded-[15px] py-[5px] w-[75%] px-[10px] box-border">
+            <div className="flex bg-white justify-between rounded-[15px] mt-[-70px] mb-[50px] py-[5px] w-[75%] px-[10px] box-border">
               <div>
                 <div className="text-[15px] font-bold">Rupesh Raut</div>
                 <div className="flex text-gray-600 px-[7px] gap-x-[8px] text-[13px]">

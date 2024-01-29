@@ -128,7 +128,7 @@ const PdfList = () => {
             </div>
           }
           <>
-            {sharedDocs.map((pdf) => (
+            {sharedDocs.map((pdf, index) => (
               <div key={pdf.id} className="bg-white shadow-md overflow-hidden">
                 <div className="p-4">
                   <div className="flex items-center justify-between mb-4">
@@ -150,13 +150,22 @@ const PdfList = () => {
                         <p className="text-gray-600 text-sm">Size: {pdf.size}</p>
                       </div>
                     </div>
-                    <div className="flex flex-col items-center">
-                      <img
-                        className="mb-[5px] w-[40px] h-[40px] rounded-[50%] border-2"
-                        src="/assets/doctor.jpg"
-                      />
-                      <p className="font-semibold text-gray-700">Dr. Mary Grey</p>
-                    </div>
+                    {index === 0 ?
+                      <div className="flex flex-col items-center">
+                        <img
+                          className="mb-[5px] w-[40px] h-[40px] rounded-[50%] border-2"
+                          src="/assets/doctor.jpg"
+                        />
+                        <p className="font-semibold text-gray-700">Dr. Mary Jane</p>
+                      </div> : <div className="flex flex-col items-center">
+                        <img
+                          className="mb-[5px] w-[40px] h-[40px] rounded-[50%] border-2"
+                          src="/assets/d0.png"
+                        />
+                        <p className="font-semibold text-gray-700">Dr. Emily White</p>
+                      </div>
+                    }
+
                   </div>
                 </div>
               </div>
