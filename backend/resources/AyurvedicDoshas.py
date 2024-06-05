@@ -3,28 +3,30 @@ from flask_jwt_extended import jwt_required, get_jwt_identity
 from models.user import User as UserModel
 import os
 from langchain.embeddings.huggingface import HuggingFaceEmbeddings
-from llama_index import (
-    LangchainEmbedding,
-    ServiceContext,
-    StorageContext,
-    load_index_from_storage,
-    set_global_service_context,
+from llama_index.embeddings.langchain import LangchainEmbedding
+from llama_index.core import Settings
+from llama_index.core.memory import ChatMemoryBuffer
+from langchain_openai import ChatOpenAI
+from langchain_google_genai import ChatGoogleGenerativeAI
+from llama_index.core import (
+    StorageContext, 
+    load_index_from_storage, 
 )
-from llama_index.memory import ChatMemoryBuffer
-from langchain.chat_models import ChatOpenAI
 
 os.environ["TOKENIZERS_PARALLELISM"] = "False"
 os.environ["OPENAI_API_KEY"] = os.getenv("FLASK_OPENAI_API_KEY")
+os.environ["GOOGLE_API_KEY"] = os.getenv("GEMINI")
 
 model = LangchainEmbedding(HuggingFaceEmbeddings(model_name='sentence-transformers/all-MiniLM-L6-v2'))
-llm = ChatOpenAI(model_name="gpt-3.5-turbo")
-service_context = ServiceContext.from_defaults(embed_model=model, llm=llm)
-set_global_service_context(service_context)
+llm = ChatGoogleGenerativeAI(model="gemini-pro", convert_system_message_to_human=True)
+
+Settings.embed_model = model
+Settings.llm = llm
 
 storage_context = StorageContext.from_defaults(persist_dir="./AI/medical_composition_index")
 medical_index = load_index_from_storage(storage_context)
 
-memory = ChatMemoryBuffer.from_defaults(token_limit=1500)
+memory = ChatMemoryBuffer.from_defaults(token_limit=3500)
 
 balance_dosha_engine = medical_index.as_chat_engine(
     chat_mode="context",
