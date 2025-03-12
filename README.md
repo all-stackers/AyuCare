@@ -1,6 +1,6 @@
 # Health Assist
 
-A comprehensive health assistant that predicts diseases based on user-reported symptoms and recommends personalized Ayurvedic remedies. Integrated features include allopathy alternatives, smart watch health analytics, appointment scheduling, and secure document sharing to provide holistic healthcare solutions.
+A comprehensive health assistant that predicts diseases based on user-reported symptoms and recommends personalized Ayurvedic remedies. Embedded features include allopathy alternatives, smart watch health analytics, appointment scheduling, and secure document sharing to provide holistic healthcare solutions.
 
 # Screenshots
 
